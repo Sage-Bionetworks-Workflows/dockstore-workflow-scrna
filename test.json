@@ -1,0 +1,13 @@
+{
+    "fastq_synapseid": "syn21265230",
+    "genome_synapseid": "syn21094411",
+    "sample_csv": {
+        "class": "File",
+        "path": "/home/wpoehlm/Testing/SSWF/test.csv"
+    },
+    "synapse_config": {
+        "class": "File",
+        "path": "/home/wpoehlm/synapseConfig"
+    }
+}
+
