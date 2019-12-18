@@ -21,6 +21,8 @@ inputs:
     type: string
     'sbg:x': -1050
     'sbg:y': -254
+  - id: sample_id
+    type: string[]
 outputs:
   - id: output
     outputSource:
@@ -48,9 +50,12 @@ steps:
         source: synapse_recursive_get_1/output_dir
       - id: genome_dir
         source: synapse_recursive_get/output_dir
+      - id: sample_id
+        source: sample_id
     out:
       - id: output
-    run: tools/cellranger_count.cwl
+    scatter: sample_id
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_count.cwl
     label: cellr_count
     'sbg:x': -376.206298828125
     'sbg:y': -398.5
@@ -62,7 +67,7 @@ steps:
         source: sample_csv
     out:
       - id: output
-    run: tools/cellranger_aggr.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_aggr.cwl
     label: cellr_aggr
     'sbg:x': 166.793701171875
     'sbg:y': -377.5
@@ -78,4 +83,8 @@ steps:
     label: Recursive synapse get
     'sbg:x': -723.206298828125
     'sbg:y': -347.5
-requirements: []
+requirements:
+  - class: ScatterFeatureRequirement
+  - class: InlineJavascriptRequirement
+  - class: StepInputExpressionRequirement
+  - class: MultipleInputFeatureRequirement
