@@ -16,7 +16,7 @@ outputs:
     outputBinding:
       glob: '*fastq*'
 label: download_fastq.cwl
-arguments: ['python3', 'breakdown.py']
+arguments: ['python3', 'download_fastq.py']
 hints:
   - class: DockerRequirement
     dockerPull: sagebionetworks/synapsepythonclient:v1.9.2
