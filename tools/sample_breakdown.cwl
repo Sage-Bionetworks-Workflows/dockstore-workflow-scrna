@@ -1,8 +1,6 @@
 class: CommandLineTool
 cwlVersion: v1.0
-$namespaces:
-  sbg: 'https://www.sevenbridges.com'
-id: sample_provenance
+id: sample_breakdown
 inputs:
   - id: synapse_config
     type: File
