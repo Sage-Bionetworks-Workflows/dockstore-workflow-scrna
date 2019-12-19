@@ -12,15 +12,21 @@ inputs:
       position: 2
 outputs:
   - id: fastq
-    type: File[]
+    type: Directory
     outputBinding:
-      glob: '*fastq*'
+      glob: '*'
+      outputEval: |
+        ${
+          self[0].nameroot = inputs.sample_csv.nameroot.split('_',1);
+          return self[0]
+        }
 label: download_fastq.cwl
 arguments: ['python3', 'download_fastq.py']
 hints:
   - class: DockerRequirement
     dockerPull: sagebionetworks/synapsepythonclient:v1.9.2
 requirements:
+  - class: InlineJavascriptRequirement
   - class: InitialWorkDirRequirement
     listing:
       - entryname: download_fastq.py
@@ -42,7 +48,7 @@ requirements:
           for line in open(sample_csv):
               line = line.strip()
               specimen, synid = line.split(',')
-              entity = syn.get(synid, downloadLocation='.')
+              entity = syn.get(synid, downloadLocation=specimen)
               print(entity.name)
               print(entity.path)
 
