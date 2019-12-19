@@ -71,14 +71,16 @@ steps:
       - id: genome_dir
         source: synapse_recursive_get/output_dir
       - id: sample_id
-        valueFrom: $(self.fastq_dir.nameroot)
+        valueFrom: $(inputs.fastq_dir.nameroot)
     out:
       - id: output
     run: >-
       https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_count.cwl
     label: cellr_count
     scatter:
+      - fastq_dir
       - sample_id
+    scatterMethod: dotproduct
     'sbg:x': -376.206298828125
     'sbg:y': -398.5
   - id: cellranger_aggr
