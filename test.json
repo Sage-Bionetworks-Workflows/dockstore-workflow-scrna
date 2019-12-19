@@ -2,7 +2,7 @@
     "genome_synapseid": "syn21094411",
     "synapse_config": {
         "class": "File",
-        "path": "/home/wpoehlm/synapseConfig"
+        "path": "/home/wpoehlman/.synapseConfig"
     },
     "synapseid": "syn21265230"
 }

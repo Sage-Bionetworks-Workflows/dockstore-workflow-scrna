@@ -38,38 +38,6 @@ steps:
     label: Recursive synapse get
     'sbg:x': -734.206298828125
     'sbg:y': -536.5
-  - id: cellranger_count
-    in:
-      - id: fastq_dir
-        source: download_fastq/fastq
-      - id: genome_dir
-        source: synapse_recursive_get/output_dir
-      - id: sample_id
-        valueFrom: $(fastq_dir.nameroot)
-    out:
-      - id: output
-    scatter: fastq_dir
-    run: >-
-      https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_count.cwl
-    label: cellr_count
-    scatter:
-      - sample_id
-    'sbg:x': -376.206298828125
-    'sbg:y': -398.5
-  - id: cellranger_aggr
-    in:
-      - id: molecule_h5
-        source:
-          - cellranger_count/output
-      - id: sample_csv
-        source: sample_breakdown/molecule_csv
-    out:
-      - id: output
-    run: >-
-      https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_aggr.cwl
-    label: cellr_aggr
-    'sbg:x': 166.793701171875
-    'sbg:y': -377.5
   - id: sample_breakdown
     in:
       - id: synapse_config
@@ -95,6 +63,38 @@ steps:
     label: download_fastq.cwl
     'sbg:x': -615.9705200195312
     'sbg:y': -342.6625671386719
+    scatter: sample_csv
+  - id: cellranger_count
+    in:
+      - id: fastq_dir
+        source: download_fastq/fastq
+      - id: genome_dir
+        source: synapse_recursive_get/output_dir
+      - id: sample_id
+        valueFrom: $(self.fastq_dir.nameroot)
+    out:
+      - id: output
+    run: >-
+      https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_count.cwl
+    label: cellr_count
+    scatter:
+      - sample_id
+    'sbg:x': -376.206298828125
+    'sbg:y': -398.5
+  - id: cellranger_aggr
+    in:
+      - id: molecule_h5
+        source:
+          - cellranger_count/output
+      - id: sample_csv
+        source: sample_breakdown/molecule_csv
+    out:
+      - id: output
+    run: >-
+      https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_aggr.cwl
+    label: cellr_aggr
+    'sbg:x': 166.793701171875
+    'sbg:y': -377.5
 requirements:
   - class: ScatterFeatureRequirement
   - class: InlineJavascriptRequirement
