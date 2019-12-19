@@ -97,3 +97,6 @@ steps:
     'sbg:y': -342.6625671386719
 requirements:
   - class: ScatterFeatureRequirement
+  - class: InlineJavascriptRequirement
+  - class: StepInputExpressionRequirement
+  - class: MultipleInputFeatureRequirement
