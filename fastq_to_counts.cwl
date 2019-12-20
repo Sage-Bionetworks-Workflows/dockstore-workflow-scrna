@@ -70,8 +70,6 @@ steps:
         source: download_fastq/fastq
       - id: genome_dir
         source: synapse_recursive_get/output_dir
-      - id: sample_id
-        valueFrom: $(inputs.fastq_dir.nameroot)
     out:
       - id: output
     run: >-
@@ -79,7 +77,6 @@ steps:
     label: cellr_count
     scatter:
       - fastq_dir
-      - sample_id
     scatterMethod: dotproduct
     'sbg:x': -376.206298828125
     'sbg:y': -398.5
