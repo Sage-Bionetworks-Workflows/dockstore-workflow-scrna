@@ -6,7 +6,7 @@ inputs:
     type: File
     inputBinding:
       position: 1
-  - id: synapseid
+  - id: fastq_synapseid
     type: string
     inputBinding:
       position: 2
@@ -19,7 +19,7 @@ outputs:
     type: File
     outputBinding:
       glob: '*input.csv'
-label: provenance.cwl
+label: sample_breakdown.cwl
 arguments: ['python3', 'breakdown.py']
 hints:
   - class: DockerRequirement

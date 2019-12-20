@@ -13,7 +13,7 @@ inputs:
     type: string
     'sbg:x': -955
     'sbg:y': -684
-  - id: synapseid
+  - id: fastq_synapseid
     type: string
     'sbg:x': -1047.2620849609375
     'sbg:y': -260
@@ -25,30 +25,29 @@ outputs:
     'sbg:x': 410.793701171875
     'sbg:y': -391.5
 steps:
-  - id: synapse_recursive_get
+  - id: download_genome
     in:
       - id: synapse_config
         source: synapse_config
       - id: synapseid
-        default: $(inputs.genome_synapseid)
         source: genome_synapseid
     out:
       - id: output_dir
     run: tools/synapse-recursive-get-tool.cwl
-    label: Recursive synapse get
+    label: download genome
     'sbg:x': -734.206298828125
     'sbg:y': -536.5
   - id: sample_breakdown
     in:
       - id: synapse_config
         source: synapse_config
-      - id: synapseid
-        source: synapseid
+      - id: fastq_synapseid
+        source: fastq_synapseid
     out:
       - id: sample_csvs
       - id: molecule_csv
     run: tools/sample_breakdown.cwl
-    label: provenance.cwl
+    label: sample_breakdown.cwl
     'sbg:x': -828.60009765625
     'sbg:y': -278.2773742675781
   - id: download_fastq
@@ -69,12 +68,12 @@ steps:
       - id: fastq_dir
         source: download_fastq/fastq
       - id: genome_dir
-        source: synapse_recursive_get/output_dir
+        source: download_genome/output_dir
     out:
       - id: output
     run: >-
       https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_count.cwl
-    label: cellr_count
+    label: cellranger_count
     scatter:
       - fastq_dir
     scatterMethod: dotproduct
@@ -91,7 +90,7 @@ steps:
       - id: output
     run: >-
       https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_aggr.cwl
-    label: cellr_aggr
+    label: cellranger aggr
     'sbg:x': 166.793701171875
     'sbg:y': -377.5
 requirements:
