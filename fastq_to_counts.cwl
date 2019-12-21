@@ -18,10 +18,10 @@ inputs:
     'sbg:x': -1047.2620849609375
     'sbg:y': -260
 outputs:
-  - id: output
+  - id: combined_output
     outputSource:
-      - cellranger_aggr/output
-    type: Directory
+      - cellranger_aggr/combined_output
+    type: File
     'sbg:x': 410.793701171875
     'sbg:y': -391.5
 steps:
@@ -87,7 +87,7 @@ steps:
       - id: sample_csv
         source: sample_breakdown/molecule_csv
     out:
-      - id: output
+      - id: combined_output
     run: >-
       https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_aggr.cwl
     label: cellranger aggr
