@@ -2,7 +2,7 @@
     "genome_synapseid": "syn21094411",
     "synapse_config": {
         "class": "File",
-        "path": "/home/wpoehlman/.synapseConfig"
+        "path": "/etc/synapse/.synapseConfig"
     },
     "fastq_synapseid": "syn21265230"
 }
