@@ -20,9 +20,6 @@ import os
 import subprocess
 
 from utils.giturl import github_url
-from utils.linkresources import symlink_resources
-from utils.unlinkresources import unlink_resources
-
 
 default_jobdir = 'jobs/default'
 default_options_path = 'jobs/default/options.json'
@@ -298,10 +295,6 @@ def main():
 
     # Add environment variables that will be passed to Toil
     add_environment_vars(options)
-
-    # Symlink resource files to script directory
-    links = symlink_resources(options.job_directory)
-    atexit.register(unlink_resources, links)
 
     # Make directories for main and worker logs
     make_log_directories(options.log_path)

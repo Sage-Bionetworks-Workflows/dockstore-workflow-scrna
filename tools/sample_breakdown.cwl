@@ -88,5 +88,10 @@ requirements:
               write_h5(sampledict)
 
           main(synapseid)
+  - class: ResourceRequirement
+    ramMin: 6000
+    coresMin: 1
+    tmpdirMin: 225000
+    outdirMin: 225000
 
 
