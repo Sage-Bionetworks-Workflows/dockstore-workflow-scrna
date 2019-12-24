@@ -21,6 +21,7 @@ import subprocess
 
 from utils.giturl import github_url
 
+
 default_jobdir = 'jobs/default'
 default_options_path = 'jobs/default/options.json'
 synapse_config_path = '/etc/synapse/.synapseConfig'
