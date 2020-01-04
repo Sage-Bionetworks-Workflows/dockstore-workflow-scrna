@@ -10,7 +10,7 @@ inputs:
     'sbg:x': -193.206298828125
     'sbg:y': -361.5
   - id: fastq_dir
-    type: Directory
+    type: Directory[]
     'sbg:x': -697.206298828125
     'sbg:y': -173.5
   - id: genome_dir
@@ -33,6 +33,7 @@ steps:
         source: genome_dir
     out:
       - id: output
+    scatter: fastq_dir
     run: tools/cellranger_count.cwl
     label: cellr_count
     'sbg:x': -591.203125

@@ -22,7 +22,6 @@ outputs:
     outputSource:
       - wf_cellranger/combined_output
     type: File
-    source: wf-cellranger/combined_output
     'sbg:x': -67
     'sbg:y': -421
 steps:
@@ -77,8 +76,6 @@ steps:
       - id: combined_output
     run: ./wf-cellranger.cwl
     label: wf-cellranger
-    scatter:
-      - fastq_dir
     'sbg:x': -226
     'sbg:y': -408
 requirements:

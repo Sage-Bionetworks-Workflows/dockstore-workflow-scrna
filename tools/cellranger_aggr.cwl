@@ -30,9 +30,4 @@ requirements:
     listing:
       - $(inputs.sample_csv)
       - $(inputs.molecule_h5)
-  - class: ResourceRequirement
-    ramMin: 60000
-    coresMin: 15
-    tmpdirMin: 225000
-    outdirMin: 225000
 
