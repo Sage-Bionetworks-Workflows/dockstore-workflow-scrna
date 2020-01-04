@@ -20,10 +20,11 @@ inputs:
 outputs:
   - id: combined_output
     outputSource:
-      - cellranger_aggr/combined_output
+      - wf_cellranger/combined_output
     type: File
-    'sbg:x': 410.793701171875
-    'sbg:y': -391.5
+    source: wf-cellranger/combined_output
+    'sbg:x': -67
+    'sbg:y': -421
 steps:
   - id: download_genome
     in:
@@ -60,41 +61,26 @@ steps:
       - id: fastq
     run: tools/download_fastq.cwl
     label: download_fastq.cwl
+    scatter:
+      - sample_csv
     'sbg:x': -615.9705200195312
     'sbg:y': -342.6625671386719
-    scatter: sample_csv
-  - id: cellranger_count
+  - id: wf_cellranger
     in:
+      - id: sample_csv
+        source: sample_breakdown/molecule_csv
       - id: fastq_dir
         source: download_fastq/fastq
       - id: genome_dir
         source: download_genome/output_dir
     out:
-      - id: output
-    run: >-
-      https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_count.cwl
-    label: cellranger_count
+      - id: combined_output
+    run: ./wf-cellranger.cwl
+    label: wf-cellranger
     scatter:
       - fastq_dir
-    scatterMethod: dotproduct
-    'sbg:x': -376.206298828125
-    'sbg:y': -398.5
-  - id: cellranger_aggr
-    in:
-      - id: molecule_h5
-        source:
-          - cellranger_count/output
-      - id: sample_csv
-        source: sample_breakdown/molecule_csv
-    out:
-      - id: combined_output
-    run: >-
-      https://raw.githubusercontent.com/Sage-Bionetworks/RNASeq-CWLTools/develop/tools/cell_ranger/cellranger_aggr.cwl
-    label: cellranger aggr
-    'sbg:x': 166.793701171875
-    'sbg:y': -377.5
+    'sbg:x': -226
+    'sbg:y': -408
 requirements:
+  - class: SubworkflowFeatureRequirement
   - class: ScatterFeatureRequirement
-  - class: InlineJavascriptRequirement
-  - class: StepInputExpressionRequirement
-  - class: MultipleInputFeatureRequirement
