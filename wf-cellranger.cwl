@@ -51,4 +51,6 @@ steps:
     label: cellranger aggr
     'sbg:x': 11.793701171875
     'sbg:y': -207.5
-requirements: []
+requirements:
+  - class: MultipleInputFeatureRequirement 
+  - class: ScatterFeatureRequirement

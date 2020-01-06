@@ -1,6 +1,6 @@
 {
   "cluster_name": "rna-seq-reprocessing-scicomp-toil-cluster-v001",
-  "run_name": "sss",
+  "run_name": "lst",
   "tmpdir": "/var/lib/toil",
   "log_level": "DEBUG",
   "retry_count": "3",

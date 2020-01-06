@@ -15,6 +15,7 @@ outputs:
     type: File
     outputBinding:
       glob: '$(inputs.fastq_dir.basename)/outs/molecule_info.h5'
+#      glob: '$(inputs.fastq_dir.dirname)/outs/molecule_info.h5'
       outputEval: |
         ${
           self[0].basename = inputs.fastq_dir.basename + '_molecule_info.h5';
@@ -29,11 +30,11 @@ arguments:
   - position: 2
     prefix: '--fastqs='
     separate: false
-    valueFrom: $(inputs.fastq_dir)
+    valueFrom: '$(inputs.fastq_dir.dirname)/$(inputs.fastq_dir.basename)'
   - position: 3
     prefix: '--transcriptome='
     separate: false
-    valueFrom: $(inputs.genome_dir)
+    valueFrom: $(inputs.genome_dir.dirname)/$(inputs.genome_dir.basename)
   - position: 4
     prefix: '--chemistry='
     separate: false
