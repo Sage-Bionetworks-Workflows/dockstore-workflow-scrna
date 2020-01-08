@@ -1,6 +1,6 @@
 class: CommandLineTool
 cwlVersion: v1.0
-id: cellranger count
+id: cellranger_count
 baseCommand: ['cellranger', 'count']
 inputs:
   - id: fastq_dir
