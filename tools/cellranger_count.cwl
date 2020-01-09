@@ -30,11 +30,11 @@ arguments:
   - position: 2
     prefix: '--fastqs='
     separate: false
-    valueFrom: '$(inputs.fastq_dir.dirname)/$(inputs.fastq_dir.basename)'
+    valueFrom: './$(inputs.fastq_dir.basename)'
   - position: 3
     prefix: '--transcriptome='
     separate: false
-    valueFrom: $(inputs.genome_dir.dirname)/$(inputs.genome_dir.basename)
+    valueFrom: './$(inputs.genome_dir.basename)'
   - position: 4
     prefix: '--chemistry='
     separate: false
@@ -48,4 +48,11 @@ requirements:
     dockerPull: sagebionetworks/cellranger
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
-
+  - class: InitialWorkDirRequirement
+    listing:
+    - entry: $(inputs.fastq_dir)
+      entryname: $(inputs.fastq_dir.basename)
+      writable: true
+    - entry: $(inputs.genome_dir)
+      entryname: $(inputs.genome_dir.basename)
+      writable: true

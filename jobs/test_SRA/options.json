@@ -3,7 +3,7 @@
   "run_name": "lst",
   "tmpdir": "/var/lib/toil",
   "log_level": "DEBUG",
-  "retry_count": "3",
+  "retry_count": "1",
   "target_time": "1",
   "default_disk": "450G",
   "node_types": "m5.xlarge",
