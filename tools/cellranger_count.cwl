@@ -14,7 +14,7 @@ outputs:
   - id: output
     type: File
     outputBinding:
-      glob: '$(inputs.fastq_dir.basename)/outs/molecule_info.h5'
+      glob: '$(inputs.fastq_dir.basename)_run/outs/molecule_info.h5'
 #      glob: '$(inputs.fastq_dir.dirname)/outs/molecule_info.h5'
       outputEval: |
         ${
@@ -26,7 +26,7 @@ arguments:
   - position: 1
     prefix: '--id='
     separate: false
-    valueFrom: $(inputs.fastq_dir.basename)
+    valueFrom: $(inputs.fastq_dir.basename)_run
   - position: 2
     prefix: '--fastqs='
     separate: false
