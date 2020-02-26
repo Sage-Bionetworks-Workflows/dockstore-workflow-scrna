@@ -22,6 +22,11 @@ arguments:
     prefix: '--csv='
     separate: false
     valueFrom: $(inputs.sample_csv)
+  - position: 3
+    prefix: ''
+    separate: false
+    shellQuote: false
+    valueFrom: '--nosecondary'
 requirements:
   - class: DockerRequirement
     dockerPull: sagebionetworks/cellranger

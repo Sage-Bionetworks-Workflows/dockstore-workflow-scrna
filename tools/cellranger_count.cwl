@@ -43,6 +43,11 @@ arguments:
     prefix: '--sample='
     separate: false
     valueFrom: $(inputs.fastq_dir.basename)
+  - position: 6
+    prefix: ''
+    separate: false
+    shellQuote: false
+    valueFrom: '--nosecondary'
 requirements:
   - class: DockerRequirement
     dockerPull: sagebionetworks/cellranger
