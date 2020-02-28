@@ -7,6 +7,11 @@ inputs:
     type: File[]
   - id: sample_csv
     type: File
+  - id: analysis_flag
+    type: boolean
+    inputBinding:
+      position: 3
+      prefix: --nosecondary
 outputs:
   - id: combined_output
     type: File
@@ -22,11 +27,6 @@ arguments:
     prefix: '--csv='
     separate: false
     valueFrom: $(inputs.sample_csv)
-  - position: 3
-    prefix: ''
-    separate: false
-    shellQuote: false
-    valueFrom: '--nosecondary'
 requirements:
   - class: DockerRequirement
     dockerPull: sagebionetworks/cellranger

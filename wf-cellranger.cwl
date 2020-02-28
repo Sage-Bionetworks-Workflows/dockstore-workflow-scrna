@@ -17,6 +17,8 @@ inputs:
     type: Directory
     'sbg:x': -705.206298828125
     'sbg:y': -299.5
+  - id: analysis_flag
+    type: boolean
 outputs:
   - id: combined_output
     outputSource:
@@ -31,6 +33,8 @@ steps:
         source: fastq_dir
       - id: genome_dir
         source: genome_dir
+      - id: analysis_flag
+        source: analysis_flag
     out:
       - id: output
     scatter: fastq_dir
@@ -45,6 +49,8 @@ steps:
           - cellranger_count/output
       - id: sample_csv
         source: sample_csv
+      - id: analysis_flag
+        source: analysis_flag
     out:
       - id: combined_output
     run: tools/cellranger_aggr.cwl

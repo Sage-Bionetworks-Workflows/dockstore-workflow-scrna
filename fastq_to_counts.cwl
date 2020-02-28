@@ -17,6 +17,8 @@ inputs:
     type: string
     'sbg:x': -1047.2620849609375
     'sbg:y': -260
+  - id: analysis_flag
+    type: boolean
 outputs:
   - id: combined_output
     outputSource:
@@ -72,6 +74,8 @@ steps:
         source: download_fastq/fastq
       - id: genome_dir
         source: download_genome/output_dir
+      - id: analysis_flag
+        source: analysis_flag
     out:
       - id: combined_output
     run: ./wf-cellranger.cwl
