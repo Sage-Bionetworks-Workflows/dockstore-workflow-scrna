@@ -1,5 +1,6 @@
 {
     "genome_synapseid": "syn21094411",
+    "analysis_flag": true,
     "synapse_config": {
         "class": "File",
         "path": "/etc/synapse/.synapseConfig"

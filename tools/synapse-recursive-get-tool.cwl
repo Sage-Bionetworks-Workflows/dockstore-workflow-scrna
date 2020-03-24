@@ -21,9 +21,7 @@ requirements:
         entry: $(inputs.synapse_config)
   - class: DockerRequirement
     dockerPull: sagebionetworks/synapsepythonclient:v1.9.2
-
 arguments: ["get", "-r", $(inputs.synapseid)]
-     
 outputs:
   - id: output_dir
     type: Directory
