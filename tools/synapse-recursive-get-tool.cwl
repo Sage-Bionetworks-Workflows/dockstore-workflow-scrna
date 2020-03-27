@@ -23,7 +23,19 @@ requirements:
     dockerPull: sagebionetworks/synapsepythonclient:v1.9.2
 arguments: ["get", "-r", $(inputs.synapseid)]
 outputs:
-  - id: output_dir
-    type: Directory
+  - id: fasta
+    type: File[]
     outputBinding:
-      glob: '.'
+      glob: 'fasta/*'
+  - id: genes
+    type: File
+    outputBinding:
+      glob: 'genes/genes.gtf'
+  - id: pickle
+    type: File
+    outputBinding:
+      glob: 'pickle/genes.pickle'
+  - id: star
+    type: File[]
+    outputBinding:
+      glob: 'star/*'

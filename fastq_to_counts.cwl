@@ -34,7 +34,10 @@ steps:
       - id: synapseid
         source: genome_synapseid
     out:
-      - id: output_dir
+      - id: fasta
+      - id: genes
+      - id: pickle
+      - id: star
     run: tools/synapse-recursive-get-tool.cwl
     label: download genome
     'sbg:x': -734.206298828125
@@ -59,7 +62,7 @@ steps:
       - id: sample_csv
         source: sample_breakdown/sample_csvs
     out:
-      - id: fastq
+      - id: fastq_dir
     run: tools/download_fastq.cwl
     label: download_fastq.cwl
     scatter:
@@ -71,9 +74,15 @@ steps:
       - id: sample_csv
         source: sample_breakdown/molecule_csv
       - id: fastq_dir
-        source: download_fastq/fastq
-      - id: genome_dir
-        source: download_genome/output_dir
+        source: download_fastq/fastq_dir
+      - id: fasta
+        source: download_genome/fasta
+      - id: genes
+        source: download_genome/genes
+      - id: pickle
+        source: download_genome/pickle
+      - id: star
+        source: download_genome/star
       - id: analysis_flag
         source: analysis_flag
     out:

@@ -11,15 +11,15 @@ inputs:
     inputBinding:
       position: 2
 outputs:
-  - id: fastq
-    type: Directory
+  - id: fastq_dir
+    type: File[]
     outputBinding:
       glob: '*'
-      outputEval: |
-        ${
-          self[0].nameroot = inputs.sample_csv.nameroot.split('_',1);
-          return self[0]
-        }
+#      outputEval: |
+#        ${
+#          self[0].nameroot = inputs.sample_csv.nameroot.split('_',1);
+#          return self[0]
+#        }
 label: download_fastq.cwl
 arguments: ['python3', 'download_fastq.py']
 hints:
@@ -48,7 +48,7 @@ requirements:
           for line in open(sample_csv):
               line = line.strip()
               specimen, synid = line.split(',')
-              entity = syn.get(synid, downloadLocation=specimen)
+              entity = syn.get(synid)
               print(entity.name)
               print(entity.path)
 

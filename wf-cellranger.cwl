@@ -5,18 +5,23 @@ label: wf-cellranger
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
 inputs:
+  - id: fastq_dir
+    type: File[]
+    type:
+      type: array
+      items:
+        type: array
+        items: File
+  - id: fasta
+    type: File[]
+  - id: pickle
+    type: File
+  - id: star
+    type: File[]
+  - id: genes
+    type: File
   - id: sample_csv
     type: File
-    'sbg:x': -193.206298828125
-    'sbg:y': -361.5
-  - id: fastq_dir
-    type: Directory[]
-    'sbg:x': -697.206298828125
-    'sbg:y': -173.5
-  - id: genome_dir
-    type: Directory
-    'sbg:x': -705.206298828125
-    'sbg:y': -299.5
   - id: analysis_flag
     type: boolean
 outputs:
@@ -31,8 +36,16 @@ steps:
     in:
       - id: fastq_dir
         source: fastq_dir
-      - id: genome_dir
-        source: genome_dir
+      - id: fasta
+        source: fasta
+      - id: genes
+        source: genes
+      - id: pickle
+        source: pickle
+      - id: star
+        source: star
+      - id: sample_csv
+        source: sample_csv
       - id: analysis_flag
         source: analysis_flag
     out:
@@ -58,5 +71,6 @@ steps:
     'sbg:x': 11.793701171875
     'sbg:y': -207.5
 requirements:
-  - class: MultipleInputFeatureRequirement 
+  - class: MultipleInputFeatureRequirement
   - class: ScatterFeatureRequirement
+  - class: MultipleInputFeatureRequirement

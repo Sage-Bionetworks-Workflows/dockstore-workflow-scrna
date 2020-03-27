@@ -4,9 +4,17 @@ id: cellranger_count
 baseCommand: ['cellranger', 'count']
 inputs:
   - id: fastq_dir
-    type: Directory
-  - id: genome_dir
-    type: Directory
+    type: File[]
+  - id: fasta
+    type: File[]
+  - id: pickle
+    type: File
+  - id: star
+    type: File[]
+  - id: genes
+    type: File
+  - id: sample_csv
+    type: File
   - id: chemistry
     type: string?
     default: threeprime
@@ -19,27 +27,27 @@ outputs:
   - id: output
     type: File
     outputBinding:
-      glob: '$(inputs.fastq_dir.basename)_run/outs/molecule_info.h5'
-#      glob: '$(inputs.fastq_dir.dirname)/outs/molecule_info.h5'
-      outputEval: |
-        ${
-          self[0].basename = inputs.fastq_dir.basename + '_molecule_info.h5';
-          return self[0]
-        }
+       glob: '*'
+#      glob: '$(inputs.sample_csv.nameroot).split('_',1)_run/outs/molecule_info.h5'
+#      outputEval: |
+#        ${
+#          self[0].basename = inputs.sample_csv.nameroot.split('_',1) + '_molecule_info.h5';
+#          return self[0]
+#        }
 label: cellr_count
 arguments:
   - position: 1
     prefix: '--id='
     separate: false
-    valueFrom: $(inputs.fastq_dir.basename)_run
+    valueFrom: $(inputs.sample_csv.nameroot.split('_',1))_run
   - position: 2
     prefix: '--fastqs='
     separate: false
-    valueFrom: './$(inputs.fastq_dir.basename)'
+    valueFrom: '.'
   - position: 3
     prefix: '--transcriptome='
     separate: false
-    valueFrom: './$(inputs.genome_dir.basename)'
+    valueFrom: '.'
   - position: 4
     prefix: '--chemistry='
     separate: false
@@ -47,17 +55,23 @@ arguments:
   - position: 5
     prefix: '--sample='
     separate: false
-    valueFrom: $(inputs.fastq_dir.basename)
+    valueFrom: $(inputs.sample_csv.nameroot.split('_',1))
 requirements:
   - class: DockerRequirement
     dockerPull: sagebionetworks/cellranger
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
-  - class: InitialWorkDirRequirement
-    listing:
-    - entry: $(inputs.fastq_dir)
-      entryname: $(inputs.fastq_dir.basename)
-      writable: true
-    - entry: $(inputs.genome_dir)
-      entryname: $(inputs.genome_dir.basename)
-      writable: true
+#  - class: InitialWorkDirRequirement
+#    listing:
+#    - entry: $(inputs.fastq_dir)
+#      entryname: $(inputs.fastq_dir.basename)
+#      writable: true
+#    - entry: $(inputs.fastq_dir)
+#    - entry: $(inputs.fasta)
+#      entryname: 'fasta'
+#    - entry: $(inputs.genes)
+#      entryname: 'genes'
+#    - entry: $(inputs.pickle)
+#      entryname: 'pickle'
+#    - entry: $(inputs.star)
+#      entryname: 'star'
