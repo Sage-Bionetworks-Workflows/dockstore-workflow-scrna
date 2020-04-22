@@ -1,7 +1,6 @@
 class: CommandLineTool
 cwlVersion: v1.0
 id: download_fastq
-stdout: cwl.output.json
 inputs:
   - id: synapse_config
     type: File
@@ -12,17 +11,10 @@ inputs:
     inputBinding:
       position: 2
 outputs:
-  - id: sample
-    type: string
   - id: fastq_dir
     type: File[]
     outputBinding:
-      glob: '*'
-#      outputEval: |
-#        ${
-#          self[0].nameroot = inputs.sample_csv.nameroot.split('_',1);
-#          return self[0]
-#        }
+      glob: '*fastq*'
 label: download_fastq.cwl
 arguments: ['python3', 'download_fastq.py']
 hints:
@@ -35,22 +27,17 @@ requirements:
       - entryname: download_fastq.py
         entry: |-
           #!/usr/bin/env python
-
           import synapseclient as sc
           import sys
-
           # Path to synapse config file
           synconf = sys.argv[1]
           # The csv file containing specimenid-synapseid mappings
           sample_csv = sys.argv[2]
-
           # Login to synapse
           syn = sc.Synapse(configPath=synconf)
           syn.login()
-
           for line in open(sample_csv):
               line = line.strip()
               specimen, synid = line.split(',')
               entity = syn.get(synid)
-
-              print(str('{"sample":' + '\"' +  specimen + '\"' + '}'), file=open('cwl.output.json','w'))
+              print(entity)

@@ -63,13 +63,22 @@ steps:
         source: sample_breakdown/sample_csvs
     out:
       - id: fastq_dir
-      - id: sample
     run: tools/download_fastq.cwl
     label: download_fastq.cwl
     scatter:
       - sample_csv
     'sbg:x': -615.9705200195312
     'sbg:y': -342.6625671386719
+  - id: grab_sample
+    in:
+      - id: sample_csv
+        source: sample_breakdown/sample_csvs
+    out:
+      - id: sample
+    run: tools/grab_sample.cwl
+    label: grab_sample.cwl
+    scatter:
+      - sample_csv
   - id: wf_cellranger
     in:
       - id: sample_csv
@@ -85,7 +94,7 @@ steps:
       - id: star
         source: download_genome/star
       - id: sample
-        source: download_fastq/sample
+        source: grab_sample/sample
       - id: analysis_flag
         source: analysis_flag
     out:

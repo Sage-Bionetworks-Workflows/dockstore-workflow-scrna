@@ -62,10 +62,10 @@ requirements:
     dockerPull: sagebionetworks/cellranger
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
-#  - class: InitialWorkDirRequirement
-#    listing:
-#    - entry: $(inputs.fastq_dir)
-#      entryname: $(inputs.fastq_dir.basename)
+  - class: InitialWorkDirRequirement
+    listing:
+    - entry: $(inputs.fastq_dir)
+      entryname: $(inputs.sample)
 #      writable: true
 #    - entry: $(inputs.fastq_dir)
 #    - entry: $(inputs.fasta)
