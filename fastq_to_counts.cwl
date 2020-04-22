@@ -63,6 +63,7 @@ steps:
         source: sample_breakdown/sample_csvs
     out:
       - id: fastq_dir
+      - id: sample
     run: tools/download_fastq.cwl
     label: download_fastq.cwl
     scatter:
@@ -83,6 +84,8 @@ steps:
         source: download_genome/pickle
       - id: star
         source: download_genome/star
+      - id: sample
+        source: download_fastq/sample
       - id: analysis_flag
         source: analysis_flag
     out:

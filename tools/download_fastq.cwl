@@ -1,6 +1,7 @@
 class: CommandLineTool
 cwlVersion: v1.0
 id: download_fastq
+stdout: cwl.output.json
 inputs:
   - id: synapse_config
     type: File
@@ -11,6 +12,8 @@ inputs:
     inputBinding:
       position: 2
 outputs:
+  - id: sample
+    type: string
   - id: fastq_dir
     type: File[]
     outputBinding:
@@ -49,6 +52,5 @@ requirements:
               line = line.strip()
               specimen, synid = line.split(',')
               entity = syn.get(synid)
-              print(entity.name)
-              print(entity.path)
 
+              print(str('{"sample":' + '\"' +  specimen + '\"' + '}'), file=open('cwl.output.json','w'))

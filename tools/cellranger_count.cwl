@@ -18,6 +18,8 @@ inputs:
   - id: chemistry
     type: string?
     default: threeprime
+  - id: sample
+    type: string
   - id: analysis_flag
     type: boolean
     inputBinding:
@@ -27,19 +29,18 @@ outputs:
   - id: output
     type: File
     outputBinding:
-       glob: '*'
-#      glob: '$(inputs.sample_csv.nameroot).split('_',1)_run/outs/molecule_info.h5'
-#      outputEval: |
-#        ${
-#          self[0].basename = inputs.sample_csv.nameroot.split('_',1) + '_molecule_info.h5';
-#          return self[0]
-#        }
+      glob: '*molecule_info.h5'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_molecule_info.h5';
+          return self[0]
+        }
 label: cellr_count
 arguments:
   - position: 1
     prefix: '--id='
     separate: false
-    valueFrom: $(inputs.sample_csv.nameroot.split('_',1))_run
+    valueFrom: $(inputs.sample)_run
   - position: 2
     prefix: '--fastqs='
     separate: false
@@ -55,7 +56,7 @@ arguments:
   - position: 5
     prefix: '--sample='
     separate: false
-    valueFrom: $(inputs.sample_csv.nameroot.split('_',1))
+    valueFrom: $(inputs.sample)
 requirements:
   - class: DockerRequirement
     dockerPull: sagebionetworks/cellranger

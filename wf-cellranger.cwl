@@ -6,7 +6,6 @@ $namespaces:
   sbg: 'https://www.sevenbridges.com'
 inputs:
   - id: fastq_dir
-    type: File[]
     type:
       type: array
       items:
@@ -22,6 +21,8 @@ inputs:
     type: File
   - id: sample_csv
     type: File
+  - id: sample
+    type: string[]
   - id: analysis_flag
     type: boolean
 outputs:
@@ -44,13 +45,16 @@ steps:
         source: pickle
       - id: star
         source: star
+      - id: sample
+        source: sample
       - id: sample_csv
         source: sample_csv
       - id: analysis_flag
         source: analysis_flag
     out:
       - id: output
-    scatter: fastq_dir
+    scatter: [fastq_dir, sample]
+    scatterMethod: dotproduct
     run: tools/cellranger_count.cwl
     label: cellr_count
     'sbg:x': -591.203125
