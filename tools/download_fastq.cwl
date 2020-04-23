@@ -39,5 +39,5 @@ requirements:
           for line in open(sample_csv):
               line = line.strip()
               specimen, synid = line.split(',')
-              entity = syn.get(synid)
+              entity = syn.get(synid, downloadLocation='.')
               print(entity)

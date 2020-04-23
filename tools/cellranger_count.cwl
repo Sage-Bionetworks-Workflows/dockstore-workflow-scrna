@@ -63,10 +63,7 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
   - class: InitialWorkDirRequirement
-    listing:
-    - entry: $(inputs.fastq_dir)
-      entryname: $(inputs.sample)
-#      writable: true
+    listing: $(inputs.fastq_dir)
 #    - entry: $(inputs.fastq_dir)
 #    - entry: $(inputs.fasta)
 #      entryname: 'fasta'
