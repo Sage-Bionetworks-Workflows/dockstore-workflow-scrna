@@ -94,7 +94,7 @@ outputs:
   - id: sjdbListout
     type: File
     outputBinding:
-      glob: 'star/sjdbList.out.tab '
+      glob: 'star/sjdbList.out.tab'
   - id: transcriptInfo
     type: File
     outputBinding:

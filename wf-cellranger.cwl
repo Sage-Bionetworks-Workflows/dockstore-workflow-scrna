@@ -69,12 +69,42 @@ steps:
         source: fastq_dir
       - id: fasta
         source: fasta
+      - id: fai
+        source: fai
       - id: genes
         source: genes
       - id: pickle
         source: pickle
-      - id: star
-        source: star
+      - id: Genome
+        source: Genome
+      - id: SA
+        source: SA
+      - id: SAindex
+        source: SAindex
+      - id: chrLength
+        source: chrLength
+      - id: chrName
+        source: chrName
+      - id: chrNameLength
+        source: chrNameLength
+      - id: chrStart
+        source: chrStart
+      - id: exonGeTrInfo
+        source: exonGeTrInfo
+      - id: exonInfo
+        source: exonInfo
+      - id: geneInfo
+        source: geneInfo
+      - id: genomeParameters
+        source: genomeParameters
+      - id: sjdbInfo
+        source: sjdbInfo
+      - id: sjdbList
+        source: sjdbList
+      - id: sjdbListout
+        source: sjdbListout
+      - id: transcriptInfo
+        source: transcriptInfo
       - id: sample
         source: sample
       - id: sample_csv
