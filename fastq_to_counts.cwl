@@ -34,6 +34,7 @@ steps:
       - id: synapseid
         source: genome_synapseid
     out:
+      - id: reference
       - id: fasta
       - id: fai
       - id: genes
@@ -100,6 +101,8 @@ steps:
         source: sample_breakdown/molecule_csv
       - id: fastq_dir
         source: download_fastq/fastq_dir
+      - id: reference
+        source: download_genome/reference
       - id: fasta
         source: download_genome/fasta
       - id: fai

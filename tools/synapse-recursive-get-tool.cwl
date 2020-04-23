@@ -23,6 +23,10 @@ requirements:
     dockerPull: sagebionetworks/synapsepythonclient:v1.9.2
 arguments: ["get", "-r", $(inputs.synapseid)]
 outputs:
+  - id: reference
+    type: File
+    outputBinding:
+      glob: 'reference.json'
   - id: fasta
     type: File
     outputBinding:

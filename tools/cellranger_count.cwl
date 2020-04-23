@@ -5,6 +5,8 @@ baseCommand: ['cellranger', 'count']
 inputs:
   - id: fastq_dir
     type: File[]
+  - id: reference
+    type: File
   - id: fasta
     type: File
   - id: fai
@@ -78,7 +80,7 @@ arguments:
   - position: 3
     prefix: '--transcriptome='
     separate: false
-    valueFrom: '.'
+    valueFrom: 'reference'
   - position: 4
     prefix: '--chemistry='
     separate: false
@@ -96,60 +98,63 @@ requirements:
     listing:
     - entry: $(inputs.fastq_dir)
       writable: true
+    - entry: $(inputs.reference)
+      entryname: 'reference/$(inputs.reference.basename)'
+      writable: true
     - entry: $(inputs.fasta)
-      entryname: 'fasta/$(inputs.fasta.basename)'
+      entryname: 'reference/fasta/$(inputs.fasta.basename)'
       writable: true
     - entry: $(inputs.fai)
-      entryname: 'fasta/$(inputs.fai.basename)'
+      entryname: 'reference/fasta/$(inputs.fai.basename)'
       writable: true
     - entry: $(inputs.Genome)
-      entryname: 'star/$(inputs.Genome.basename)'
+      entryname: 'reference/star/$(inputs.Genome.basename)'
       writable: true
     - entry: $(inputs.SA)
-      entryname: 'star/$(inputs.SA.basename)'
+      entryname: 'reference/star/$(inputs.SA.basename)'
       writable: true
     - entry: $(inputs.SAindex)
-      entryname: 'star/$(inputs.SAindex.basename)'
+      entryname: 'reference/star/$(inputs.SAindex.basename)'
       writable: true
     - entry: $(inputs.chrLength)
-      entryname: 'star/$(inputs.chrLength.basename)'
+      entryname: 'reference/star/$(inputs.chrLength.basename)'
       writable: true
     - entry: $(inputs.chrName)
-      entryname: 'star/$(inputs.chrName.basename)'
+      entryname: 'reference/star/$(inputs.chrName.basename)'
       writable: true
     - entry: $(inputs.chrNameLength)
-      entryname: 'star/$(inputs.chrNameLength.basename)'
+      entryname: 'reference/star/$(inputs.chrNameLength.basename)'
       writable: true
     - entry: $(inputs.chrStart)
-      entryname: 'star/$(inputs.chrStart.basename)'
+      entryname: 'reference/star/$(inputs.chrStart.basename)'
       writable: true
     - entry: $(inputs.exonGeTrInfo)
-      entryname: 'star/$(inputs.exonGeTrInfo.basename)'
+      entryname: 'reference/star/$(inputs.exonGeTrInfo.basename)'
       writable: true
     - entry: $(inputs.exonInfo)
-      entryname: 'star/$(inputs.exonInfo.basename)'
+      entryname: 'reference/star/$(inputs.exonInfo.basename)'
       writable: true
     - entry: $(inputs.geneInfo)
-      entryname: 'star/$(inputs.geneInfo.basename)'
+      entryname: 'reference/star/$(inputs.geneInfo.basename)'
       writable: true
     - entry: $(inputs.genomeParameters)
-      entryname: 'star/$(inputs.genomeParameters.basename)'
+      entryname: 'reference/star/$(inputs.genomeParameters.basename)'
       writable: true
     - entry: $(inputs.sjdbInfo)
-      entryname: 'star/$(inputs.sjdbInfo.basename)'
+      entryname: 'reference/star/$(inputs.sjdbInfo.basename)'
       writable: true
     - entry: $(inputs.sjdbList)
-      entryname: 'star/$(inputs.sjdbList.basename)'
+      entryname: 'reference/star/$(inputs.sjdbList.basename)'
       writable: true
     - entry: $(inputs.sjdbListout)
-      entryname: 'star/$(inputs.sjdbListout.basename)'
+      entryname: 'reference/star/$(inputs.sjdbListout.basename)'
       writable: true
     - entry: $(inputs.transcriptInfo)
-      entryname: 'star/$(inputs.transcriptInfo.basename)'
+      entryname: 'reference/star/$(inputs.transcriptInfo.basename)'
       writable: true
     - entry: $(inputs.genes)
-      entryname: 'genes/$(inputs.genes.basename)'
+      entryname: 'reference/genes/$(inputs.genes.basename)'
       writable: true
     - entry: $(inputs.pickle)
-      entryname: 'pickle/$(inputs.pickle.basename)'
+      entryname: 'reference/pickle/$(inputs.pickle.basename)'
       writable: true

@@ -11,6 +11,8 @@ inputs:
       items:
         type: array
         items: File
+  - id: reference
+    type: File
   - id: fasta
     type: File
   - id: fai
@@ -67,6 +69,8 @@ steps:
     in:
       - id: fastq_dir
         source: fastq_dir
+      - id: reference
+        source: reference
       - id: fasta
         source: fasta
       - id: fai
