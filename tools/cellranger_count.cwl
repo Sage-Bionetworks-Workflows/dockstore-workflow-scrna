@@ -61,7 +61,7 @@ outputs:
   - id: output
     type: File
     outputBinding:
-      glob: '*molecule_info.h5'
+      glob: '$(inputs.sample)_run/outs/molecule_info.h5'
       outputEval: |
         ${
           self[0].basename = inputs.sample + '_molecule_info.h5';
