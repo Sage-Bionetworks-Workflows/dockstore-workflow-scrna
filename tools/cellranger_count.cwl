@@ -103,7 +103,7 @@ requirements:
       entryname: 'fasta/$(inputs.fai.basename)'
       writable: true
     - entry: $(inputs.Genome)
-      entryname: 'star/$(inputs.Genome)'
+      entryname: 'star/$(inputs.Genome.basename)'
       writable: true
     - entry: $(inputs.SA)
       entryname: 'star/$(inputs.SA.basename)'
