@@ -12,12 +12,42 @@ inputs:
         type: array
         items: File
   - id: fasta
-    type: File[]
+    type: File
+  - id: fai
+    type: File
   - id: pickle
     type: File
-  - id: star
-    type: File[]
   - id: genes
+    type: File
+  - id: Genome
+    type: File
+  - id: SA
+    type: File
+  - id: SAindex
+    type: File
+  - id: chrLength
+    type: File
+  - id: chrName
+    type: File
+  - id: chrNameLength
+    type: File
+  - id: chrStart
+    type: File
+  - id: exonGeTrInfo
+    type: File
+  - id: exonInfo
+    type: File
+  - id: geneInfo
+    type: File
+  - id: genomeParameters
+    type: File
+  - id: sjdbInfo
+    type: File
+  - id: sjdbList
+    type: File
+  - id: sjdbListout
+    type: File
+  - id: transcriptInfo
     type: File
   - id: sample_csv
     type: File

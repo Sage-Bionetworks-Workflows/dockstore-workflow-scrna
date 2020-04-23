@@ -35,9 +35,24 @@ steps:
         source: genome_synapseid
     out:
       - id: fasta
+      - id: fai
       - id: genes
       - id: pickle
-      - id: star
+      - id: Genome
+      - id: SA
+      - id: SAindex
+      - id: chrLength
+      - id: chrName
+      - id: chrNameLength
+      - id: chrStart
+      - id: exonGeTrInfo
+      - id: exonInfo
+      - id: geneInfo
+      - id: genomeParameters
+      - id: sjdbInfo
+      - id: sjdbList
+      - id: sjdbListout
+      - id: transcriptInfo
     run: tools/synapse-recursive-get-tool.cwl
     label: download genome
     'sbg:x': -734.206298828125
@@ -87,12 +102,42 @@ steps:
         source: download_fastq/fastq_dir
       - id: fasta
         source: download_genome/fasta
+      - id: fai
+        source: download_genome/fai
       - id: genes
         source: download_genome/genes
       - id: pickle
         source: download_genome/pickle
-      - id: star
-        source: download_genome/star
+      - id: Genome
+        source: download_genome/Genome
+      - id: SA
+        source: download_genome/SA
+      - id: SAindex
+        source: download_genome/SAindex
+      - id: chrLength
+        source: download_genome/chrLength
+      - id: chrName
+        source: download_genome/chrName
+      - id: chrNameLength
+        source: download_genome/chrNameLength
+      - id: chrStart
+        source: download_genome/chrStart
+      - id: exonGeTrInfo
+        source: download_genome/exonGeTrInfo
+      - id: exonInfo
+        source: download_genome/exonInfo
+      - id: geneInfo
+        source: download_genome/geneInfo
+      - id: genomeParameters
+        source: download_genome/genomeParameters
+      - id: sjdbInfo
+        source: download_genome/sjdbInfo
+      - id: sjdbList
+        source: download_genome/sjdbList
+      - id: sjdbListout
+        source: download_genome/sjdbListout
+      - id: transcriptInfo
+        source: download_genome/transcriptInfo
       - id: sample
         source: grab_sample/sample
       - id: analysis_flag

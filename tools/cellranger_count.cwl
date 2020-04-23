@@ -63,13 +63,63 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
   - class: InitialWorkDirRequirement
-    listing: $(inputs.fastq_dir)
-#    - entry: $(inputs.fastq_dir)
-#    - entry: $(inputs.fasta)
-#      entryname: 'fasta'
-#    - entry: $(inputs.genes)
-#      entryname: 'genes'
-#    - entry: $(inputs.pickle)
-#      entryname: 'pickle'
-#    - entry: $(inputs.star)
-#      entryname: 'star'
+    listing:
+    - entry: $(inputs.fastq_dir)
+      writable: true
+    - entry: $(inputs.fasta)
+      entryname: 'fasta/$(inputs.fasta.basename)'
+      writable: true
+    - entry: $(inputs.fai)
+      entryname: 'fasta/$(inputs.fai.basename)'
+      writable: true
+    - entry: $(inputs.Genome)
+      entryname: 'star/$(inputs.Genome)'
+      writable: true
+    - entry: $(inputs.SA)
+      entryname: 'star/$(inputs.SA.basename)'
+      writable: true
+    - entry: $(inputs.SAindex)
+      entryname: 'star/$(inputs.SAindex.basename)'
+      writable: true
+    - entry: $(inputs.chrLength)
+      entryname: 'star/$(inputs.chrLength.basename)'
+      writable: true
+    - entry: $(inputs.chrName)
+      entryname: 'star/$(inputs.chrName.basename)'
+      writable: true
+    - entry: $(inputs.chrNameLength)
+      entryname: 'star/$(inputs.chrNameLength.basename)'
+      writable: true
+    - entry: $(inputs.chrStart)
+      entryname: 'star/$(inputs.chrStart.basename)'
+      writable: true
+    - entry: $(inputs.exonGeTrInfo)
+      entryname: 'star/$(inputs.exonGeTrInfo.basename)'
+      writable: true
+    - entry: $(inputs.exonInfo)
+      entryname: 'star/$(inputs.exonInfo.basename)'
+      writable: true
+    - entry: $(inputs.geneInfo)
+      entryname: 'star/$(inputs.geneInfo.basename)'
+      writable: true
+    - entry: $(inputs.genomeParameters)
+      entryname: 'star/$(inputs.genomeParameters.basename)'
+      writable: true
+    - entry: $(inputs.sjdbInfo)
+      entryname: 'star/$(inputs.sjdbInfo.basename)'
+      writable: true
+    - entry: $(inputs.sjdbList)
+      entryname: 'star/$(inputs.sjdbList.basename)'
+      writable: true
+    - entry: $(inputs.sjdbListout)
+      entryname: 'star/$(inputs.sjdbListout.basename)'
+      writable: true
+    - entry: $(inputs.transcriptInfo)
+      entryname: 'star/$(inputs.transcriptInfo.basename)'
+      writable: true
+    - entry: $(inputs.genes)
+      entryname: 'genes/$(inputs.genes.basename)'
+      writable: true
+    - entry: $(inputs.pickle)
+      entryname: 'pickle/$(inputs.pickle.basename)'
+      writable: true
