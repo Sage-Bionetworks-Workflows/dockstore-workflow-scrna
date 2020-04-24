@@ -141,4 +141,3 @@ steps:
 requirements:
   - class: MultipleInputFeatureRequirement
   - class: ScatterFeatureRequirement
-  - class: MultipleInputFeatureRequirement
