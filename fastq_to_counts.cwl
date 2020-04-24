@@ -34,7 +34,26 @@ steps:
       - id: synapseid
         source: genome_synapseid
     out:
-      - id: output_dir
+      - id: reference
+      - id: fasta
+      - id: fai
+      - id: genes
+      - id: pickle
+      - id: Genome
+      - id: SA
+      - id: SAindex
+      - id: chrLength
+      - id: chrName
+      - id: chrNameLength
+      - id: chrStart
+      - id: exonGeTrInfo
+      - id: exonInfo
+      - id: geneInfo
+      - id: genomeParameters
+      - id: sjdbInfo
+      - id: sjdbList
+      - id: sjdbListout
+      - id: transcriptInfo
     run: tools/synapse-recursive-get-tool.cwl
     label: download genome
     'sbg:x': -734.206298828125
@@ -59,21 +78,71 @@ steps:
       - id: sample_csv
         source: sample_breakdown/sample_csvs
     out:
-      - id: fastq
+      - id: fastq_dir
     run: tools/download_fastq.cwl
     label: download_fastq.cwl
     scatter:
       - sample_csv
     'sbg:x': -615.9705200195312
     'sbg:y': -342.6625671386719
+  - id: grab_sample
+    in:
+      - id: sample_csv
+        source: sample_breakdown/sample_csvs
+    out:
+      - id: sample
+    run: tools/grab_sample.cwl
+    label: grab_sample.cwl
+    scatter:
+      - sample_csv
   - id: wf_cellranger
     in:
       - id: sample_csv
         source: sample_breakdown/molecule_csv
       - id: fastq_dir
-        source: download_fastq/fastq
-      - id: genome_dir
-        source: download_genome/output_dir
+        source: download_fastq/fastq_dir
+      - id: reference
+        source: download_genome/reference
+      - id: fasta
+        source: download_genome/fasta
+      - id: fai
+        source: download_genome/fai
+      - id: genes
+        source: download_genome/genes
+      - id: pickle
+        source: download_genome/pickle
+      - id: Genome
+        source: download_genome/Genome
+      - id: SA
+        source: download_genome/SA
+      - id: SAindex
+        source: download_genome/SAindex
+      - id: chrLength
+        source: download_genome/chrLength
+      - id: chrName
+        source: download_genome/chrName
+      - id: chrNameLength
+        source: download_genome/chrNameLength
+      - id: chrStart
+        source: download_genome/chrStart
+      - id: exonGeTrInfo
+        source: download_genome/exonGeTrInfo
+      - id: exonInfo
+        source: download_genome/exonInfo
+      - id: geneInfo
+        source: download_genome/geneInfo
+      - id: genomeParameters
+        source: download_genome/genomeParameters
+      - id: sjdbInfo
+        source: download_genome/sjdbInfo
+      - id: sjdbList
+        source: download_genome/sjdbList
+      - id: sjdbListout
+        source: download_genome/sjdbListout
+      - id: transcriptInfo
+        source: download_genome/transcriptInfo
+      - id: sample
+        source: grab_sample/sample
       - id: analysis_flag
         source: analysis_flag
     out:
