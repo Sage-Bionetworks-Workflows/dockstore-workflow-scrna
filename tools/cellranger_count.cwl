@@ -67,6 +67,96 @@ outputs:
           self[0].basename = inputs.sample + '_molecule_info.h5';
           return self[0]
         }
+  - id: summary_html
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/web_summary.html'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_web_summary.html';
+          return self[0]
+        }
+  - id: metrics_csv
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/metrics_summary.csv'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_metrics_summary.csv';
+          return self[0]
+        }
+  - id: filtered_barcodes
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/filtered_feature_bc_matrix/barcodes.tsv.gz'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_filtered_barcodes.tsv.gz';
+          return self[0]
+        }
+  - id: filtered_features
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/filtered_feature_bc_matrix/features.tsv.gz'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_filtered_features.tsv.gz';
+          return self[0]
+        }
+  - id: filtered_matrix
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/filtered_feature_bc_matrix/matrix.mtx.gz'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_filtered_matrix.mtx.gz';
+          return self[0]
+        }
+  - id: filtered_hdf5
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/filtered_feature_bc_matrix.h5'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_filtered_feature_bc_matrix.h5';
+          return self[0]
+        }
+  - id: raw_barcodes
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/raw_feature_bc_matrix/barcodes.tsv.gz'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_raw_barcodes.tsv.gz';
+          return self[0]
+        }
+  - id: raw_features
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/raw_feature_bc_matrix/features.tsv.gz'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_raw_features.tsv.gz';
+          return self[0]
+        }
+  - id: raw_matrix
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/raw_feature_bc_matrix/matrix.mtx.gz'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_raw_matrix.mtx.gz';
+          return self[0]
+        }
+  - id: raw_hdf5
+    type: File
+    outputBinding:
+      glob: '$(inputs.sample)_run/outs/raw_feature_bc_matrix.h5'
+      outputEval: |
+        ${
+          self[0].basename = inputs.sample + '_raw_feature_bc_matrix.h5';
+          return self[0]
+        }
 label: cellr_count
 arguments:
   - position: 1

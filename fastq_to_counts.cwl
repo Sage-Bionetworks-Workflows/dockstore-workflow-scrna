@@ -26,6 +26,46 @@ outputs:
     type: File
     'sbg:x': -67
     'sbg:y': -421
+  - id: summary_html
+    outputSource:
+      - wf_cellranger/summary_html
+    type: File[]
+  - id: metrics_csv
+    outputSource:
+      - wf_cellranger/metrics_csv
+    type: File[]
+  - id: filtered_barcodes
+    outputSource:
+      - wf_cellranger/filtered_barcodes
+    type: File[]
+  - id: filtered_features
+    outputSource:
+      - wf_cellranger/filtered_features
+    type: File[]
+  - id: filtered_matrix
+    outputSource:
+      - wf_cellranger/filtered_matrix
+    type: File[]
+  - id: raw_barcodes
+    outputSource:
+      - wf_cellranger/raw_barcodes
+    type: File[]
+  - id: raw_features
+    outputSource:
+      - wf_cellranger/raw_features
+    type: File[]
+  - id: raw_matrix
+    outputSource:
+      - wf_cellranger/raw_matrix
+    type: File[]
+  - id: filtered_hdf5
+    outputSource:
+      - wf_cellranger/filtered_hdf5
+    type: File[]
+  - id: raw_hdf5
+    outputSource:
+      - wf_cellranger/raw_hdf5
+    type: File[]
 steps:
   - id: download_genome
     in:
@@ -147,6 +187,16 @@ steps:
         source: analysis_flag
     out:
       - id: combined_output
+      - id: summary_html
+      - id: metrics_csv
+      - id: filtered_barcodes
+      - id: filtered_features
+      - id: filtered_matrix
+      - id: raw_barcodes
+      - id: raw_features
+      - id: raw_matrix
+      - id: filtered_hdf5
+      - id: raw_hdf5
     run: ./wf-cellranger.cwl
     label: wf-cellranger
     'sbg:x': -226
